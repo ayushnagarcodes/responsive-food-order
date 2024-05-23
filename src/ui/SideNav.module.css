@@ -1,0 +1,145 @@
+.sideNav {
+    grid-area: sideNav;
+    padding: 2rem;
+    background-color: var(--clr-neutral-50);
+}
+
+.sideNav h1 {
+    margin-bottom: 3rem;
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    text-align: center;
+}
+
+.sideNav ul {
+    height: 75svh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sideNav li a {
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 50px;
+}
+
+.sideNav li a:hover {
+    background-color: var(--clr-primary-300);
+    color: white;
+    transition: 0.2s var(--timing-function);
+}
+
+.sideNav li a:hover img {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg)
+        grayscale(100%);
+}
+
+.sideNav li img {
+    max-width: 1.75rem;
+}
+
+.sideNav li:last-of-type {
+    margin-top: auto;
+}
+
+/******************/
+/* Hamburger Menu */
+/******************/
+
+.sideNav .menuHamburger {
+    position: relative;
+    display: none;
+    height: 40px;
+    width: 40px;
+    place-items: center;
+    cursor: pointer;
+    z-index: 110;
+}
+
+.sideNav .menuHamburger span {
+    position: absolute;
+    display: block;
+    height: 2px;
+    width: 30px;
+    background-color: var(--clr-primary-300);
+    border-radius: 28px;
+    transform: translateY(10px);
+    transition: var(--timing-function) 0.5s;
+}
+
+.sideNav.hamburgerActive .menuHamburger span {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.sideNav .menuHamburger::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 30px;
+    background-color: var(--clr-primary-300);
+    border-radius: 28px;
+    transform: translateY(-10px);
+    box-shadow: 0 10px var(--clr-primary-300);
+    transition: var(--timing-function) 0.5s;
+}
+
+.sideNav.hamburgerActive .menuHamburger::before {
+    transform: translateY(0) rotate(45deg);
+    box-shadow: none;
+}
+
+/*****************/
+/* Media Queries */
+/*****************/
+
+@media only screen and (max-width: 950px) {
+    .sideNav {
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 2rem;
+    }
+
+    .sideNav h1 {
+        margin-bottom: 0rem;
+        font-size: var(--fs-lg);
+    }
+
+    .sideNav .menuItems {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100svh;
+        background-color: var(--clr-neutral-50);
+        font-size: var(--fs-md);
+
+        opacity: 0;
+        transform: translate(120%);
+        transition: var(--timing-function) 0.5s;
+    }
+
+    .sideNav ul {
+        height: auto;
+        gap: 1.5rem;
+    }
+
+    .sideNav.hamburgerActive .menuItems {
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    .sideNav .menuHamburger {
+        display: grid;
+    }
+}

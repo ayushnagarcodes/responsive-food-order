@@ -1,0 +1,45 @@
+.categoryList {
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.categoryOverflow {
+    display: flex;
+    gap: 1.5rem;
+    overflow: auto hidden;
+    padding-bottom: 0.75rem;
+}
+
+.categoryOverflow::-webkit-scrollbar {
+    display: none;
+}
+
+.category {
+    min-width: 8.75rem;
+    background-color: var(--clr-neutral-50);
+    padding: 1.25rem;
+    border-radius: var(--br-medium);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    user-select: none;
+    text-align: left;
+}
+
+.category.selected {
+    background-color: var(--clr-primary-200);
+}
+
+.category img {
+    margin-bottom: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.category p {
+    font-weight: 600;
+}
+
+.category span {
+    font-size: var(--fs-sm);
+    color: var(--clr-neutral-800);
+}

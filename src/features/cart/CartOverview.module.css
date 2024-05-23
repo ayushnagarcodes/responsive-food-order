@@ -1,0 +1,23 @@
+.cartOverview {
+    grid-area: cartOverview;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    padding: 0 2rem;
+    background-color: var(--clr-primary-300);
+    font-size: var(--fs-md);
+    font-weight: 500;
+    color: var(--clr-neutral-50);
+}
+
+.cartOverview button {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cartOverview button img {
+    width: 1.75rem;
+}

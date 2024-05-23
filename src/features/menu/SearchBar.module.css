@@ -1,0 +1,21 @@
+.searchBar {
+    max-width: 30rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchBar img {
+    position: absolute;
+    left: 1.25rem;
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.searchBar input {
+    width: 80%;
+    padding: 1rem 3.75rem;
+    background-color: var(--clr-neutral-50);
+    border-radius: var(--br-medium);
+}

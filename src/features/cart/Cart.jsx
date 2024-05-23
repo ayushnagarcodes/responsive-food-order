@@ -1,0 +1,108 @@
+import styles from "./Cart.module.css";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { getCart, getTotalCartPrice } from "./cartSlice";
+import CartItem from "./CartItem";
+
+const orderTypeData = ["Dine In", "Take Away", "Delivery"];
+
+const paymentOptionsData = [
+    { type: "Cash", img: "assets/icons/cash-outline.svg" },
+    { type: "Credit/Debit Card", img: "assets/icons/card-outline.svg" },
+    { type: "QR Code", img: "assets/icons/qr-code-outline.svg" },
+];
+
+function Cart() {
+    const [orderType, setOrderType] = useState("Dine In");
+    const [paymentType, setPaymentType] = useState("Cash");
+
+    const cart = useSelector(getCart);
+    const subTotal = useSelector(getTotalCartPrice);
+    const tax = (5 / 100) * subTotal;
+    const total = subTotal + tax;
+
+    return (
+        <section className={styles.cart}>
+            <div className={styles.cartInfo}>
+                <h2>Table No.</h2>
+                <span>Customer Name</span>
+            </div>
+
+            <OrderType orderType={orderType} setOrderType={setOrderType} />
+
+            <div className={styles.cartItems}>
+                {cart.map((item) => (
+                    <CartItem item={item} key={item.itemName} />
+                ))}
+            </div>
+
+            <TotalBill subTotal={subTotal} tax={tax} total={total} />
+
+            <PaymentOptions
+                paymentType={paymentType}
+                setPaymentType={setPaymentType}
+            />
+
+            <button className={styles.btnPlaceOrder}>Place Order</button>
+        </section>
+    );
+}
+
+function OrderType({ orderType, setOrderType }) {
+    return (
+        <div className={styles.orderType}>
+            {orderTypeData.map((data) => (
+                <button
+                    className={`${orderType === data ? styles.selected : ""}`}
+                    onClick={() => setOrderType(data)}
+                    key={data}
+                >
+                    {data}
+                </button>
+            ))}
+        </div>
+    );
+}
+
+function TotalBill({ subTotal, tax, total }) {
+    return (
+        <div className={styles.totalBill}>
+            <p>
+                <span>Sub Total</span>
+                <span>₹{subTotal}</span>
+            </p>
+            <p>
+                <span>Tax 5%</span>
+                <span>₹{tax}</span>
+            </p>
+            <p>
+                <span>Total Amount</span>
+                <span>₹{total}</span>
+            </p>
+        </div>
+    );
+}
+
+function PaymentOptions({ paymentType, setPaymentType }) {
+    return (
+        <div className={styles.paymentOptions}>
+            {paymentOptionsData.map((data) => (
+                <button
+                    onClick={() => setPaymentType(data.type)}
+                    key={data.type}
+                >
+                    <div
+                        className={`${
+                            paymentType === data.type ? styles.selected : ""
+                        }`}
+                    >
+                        <img src={data.img}></img>
+                    </div>
+                    <span>{data.type}</span>
+                </button>
+            ))}
+        </div>
+    );
+}
+
+export default Cart;
