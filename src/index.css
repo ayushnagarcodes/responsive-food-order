@@ -59,10 +59,11 @@ html {
 
 body {
     max-width: 1700px;
+    height: 100svh;
     margin: 0 auto;
     font-family: var(--ff-primary);
     font-size: var(--fs-base);
-    overflow-x: hidden;
+    overflow: hidden;
     background-color: var(--clr-primary-100);
     color: var(--clr-neutral-950);
 }

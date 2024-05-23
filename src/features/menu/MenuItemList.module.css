@@ -1,11 +1,11 @@
 .menuItemList {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 15rem);
-    /* grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); */
+    grid-template-columns: repeat(auto-fit, minmax(13.5rem, 1fr));
     gap: 2rem;
 }
 
 .menuItem {
+    max-width: 20rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -65,4 +65,15 @@
 .btnAdd:hover {
     background-color: var(--clr-primary-300);
     color: var(--clr-neutral-50);
+}
+
+@media only screen and (max-width: 480px) {
+    .menuItemList {
+        gap: 1.5rem;
+    }
+
+    .menuItem {
+        margin: 0 auto;
+        width: 18rem;
+    }
 }
