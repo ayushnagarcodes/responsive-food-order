@@ -58,6 +58,7 @@ html {
 }
 
 body {
+    position: relative;
     max-width: 1700px;
     height: 100svh;
     margin: 0 auto;
