@@ -4,3 +4,60 @@
     padding: 2rem 2rem 3rem;
     overflow: auto;
 }
+
+.menuTop {
+    margin-bottom: var(--spacing);
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: var(--spacing);
+}
+
+.foodType {
+    width: fit-content;
+    border: 1px solid var(--clr-neutral-300);
+    border-radius: var(--br-small);
+    overflow: hidden;
+}
+
+.foodType button {
+    min-width: 4rem;
+    padding: 0.75rem;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    border-radius: var(--br-xs);
+}
+
+.selected {
+    background-color: var(--clr-primary-200);
+}
+
+@media (min-width: 950px) and (max-width: 1180px) {
+    .menuTop {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .menuTop > *:first-child {
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .menu {
+        padding: 1.5rem 1.5rem 2.5rem;
+    }
+
+    .menuTop {
+        gap: 1rem;
+    }
+
+    .foodType {
+        display: flex;
+    }
+
+    .foodType button {
+        padding: 0.75rem 0.5rem;
+    }
+}

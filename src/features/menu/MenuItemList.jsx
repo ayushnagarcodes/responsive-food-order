@@ -18,7 +18,13 @@ function MenuItemList({ menuData }) {
         );
 
     return (
-        <section className={styles.menuItemList}>
+        <section
+            className={
+                menuData.length > 3
+                    ? styles.menuItemList
+                    : styles.menuItemListFlex
+            }
+        >
             {menuData.map((item) => (
                 <MenuItem item={item} key={item.name} />
             ))}

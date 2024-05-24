@@ -1,18 +1,28 @@
-import { menu } from "./Menu.module.css";
+import styles from "./Menu.module.css";
 import { useState } from "react";
 import SearchBar from "./SearchBar";
 import CategoryList from "./CategoryList";
 import MenuItemList from "./MenuItemList";
 
 function Menu() {
-    const [filter, setFilter] = useState("All");
+    const [category, setCategory] = useState("All");
+    const [foodType, setFoodType] = useState("All");
     const [query, setQuery] = useState("");
 
+    // Filtering data based on "category"
     let filteredMenuData =
-        filter === "All"
+        category === "All"
             ? menuData
-            : menuData.filter((item) => item.category.includes(filter));
+            : menuData.filter((item) => item.category.includes(category));
 
+    // Filtering data based on "foodType"
+    if (foodType === "Veg") {
+        filteredMenuData = filteredMenuData.filter((item) => item.isVeg);
+    } else if (foodType === "Non Veg") {
+        filteredMenuData = filteredMenuData.filter((item) => !item.isVeg);
+    }
+
+    // Filtering data based on "query"
     filteredMenuData =
         query.trim() === ""
             ? filteredMenuData
@@ -21,17 +31,47 @@ function Menu() {
               );
 
     return (
-        <main className={menu}>
-            <SearchBar query={query} setQuery={setQuery} />
+        <main className={styles.menu}>
+            <div className={styles.menuTop}>
+                <SearchBar query={query} setQuery={setQuery} />
+
+                <div className={styles.foodType}>
+                    {foodTypeData.map((data) => (
+                        <button
+                            onClick={() => setFoodType(data)}
+                            className={data === foodType ? styles.selected : ""}
+                            key={data}
+                        >
+                            {data}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
             <CategoryList
                 categoryData={categoryData}
-                filter={filter}
-                setFilter={setFilter}
+                category={category}
+                setCategory={setCategory}
             />
             <MenuItemList menuData={filteredMenuData} />
         </main>
     );
 }
+
+const foodTypeData = ["All", "Veg", "Non Veg"];
+
+const categoryData = [
+    { name: "All", total: 7, img: "assets/icons/menu.png" },
+    { name: "Breakfast", total: 2, img: "assets/icons/breakfast.png" },
+    {
+        name: "Main Course",
+        total: 4,
+        img: "assets/icons/northindianthali.png",
+    },
+    { name: "Burgers", total: 1, img: "assets/icons/burger.png" },
+    { name: "Soups", total: 0, img: "assets/icons/soup.png" },
+    { name: "Noodles", total: 0, img: "assets/icons/noodles.png" },
+];
 
 const menuData = [
     {
@@ -83,19 +123,6 @@ const menuData = [
         img: "https://images.unsplash.com/photo-1652595802737-56d08ad31f09?q=80&w=2268&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         category: ["Main Course"],
     },
-];
-
-const categoryData = [
-    { name: "All", total: 7, img: "assets/icons/menu.png" },
-    { name: "Breakfast", total: 2, img: "assets/icons/breakfast.png" },
-    {
-        name: "Main Course",
-        total: 4,
-        img: "assets/icons/northindianthali.png",
-    },
-    { name: "Burgers", total: 1, img: "assets/icons/burger.png" },
-    { name: "Soups", total: 0, img: "assets/icons/soup.png" },
-    { name: "Noodles", total: 0, img: "assets/icons/noodles.png" },
 ];
 
 export default Menu;

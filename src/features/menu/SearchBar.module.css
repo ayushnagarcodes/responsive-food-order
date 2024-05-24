@@ -1,5 +1,4 @@
 .searchBar {
-    margin-bottom: 2rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -14,14 +13,7 @@
 
 .searchBar input {
     width: 100%;
-    max-width: 30rem;
     padding: 1rem 3.75rem;
     background-color: var(--clr-neutral-50);
     border-radius: var(--br-medium);
-}
-
-@media only screen and (max-width: 600px) {
-    .searchBar input {
-        max-width: none;
-    }
 }

@@ -1,20 +1,20 @@
 import {
     categoryList,
-    category,
+    categoryContainer,
     selected,
     categoryOverflow,
 } from "./CategoryList.module.css";
 
-function CategoryList({ categoryData, filter, setFilter }) {
+function CategoryList({ categoryData, category, setCategory }) {
     return (
         <section className={categoryList}>
             <div className={categoryOverflow}>
                 {categoryData.map((obj, i) => (
                     <button
-                        className={`${category} ${
-                            filter === obj.name ? selected : ""
+                        className={`${categoryContainer} ${
+                            category === obj.name ? selected : ""
                         }`}
-                        onClick={() => setFilter(obj.name)}
+                        onClick={() => setCategory(obj.name)}
                         key={i}
                     >
                         <img src={obj.img} alt={obj.name} />
