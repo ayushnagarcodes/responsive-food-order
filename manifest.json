@@ -1,0 +1,45 @@
+{
+    "name": "orderpulse",
+    "short_name": "orderpulse",
+    "description": "A food order management app.",
+    "icons": [
+        {
+            "src": "./public/assets/icons/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./public/assets/icons/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "./public/assets/icons/maskable_icon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "theme_color": "#00932c",
+    "orientation": "any",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/",   
+    "scope": "/",
+
+    "screenshots": [
+        {
+         "src": "./public/assets/icons/screenshot.png",
+          "sizes": "3200x2400",
+          "type": "image/png",
+          "form_factor": "wide",
+          "label": "Wonder Widgets"
+        },
+        {
+            "src": "./public/assets/icons/screenshot.png",
+             "sizes": "3200x2400",
+             "type": "image/png",
+             "label": "Wonder Widgets"
+           }
+    ]
+}
