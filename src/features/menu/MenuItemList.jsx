@@ -1,6 +1,6 @@
 import styles from "./MenuItemList.module.css";
 import { addItem, getItemQuantity } from "../cart/cartSlice";
-import { UpdateItemQuantity } from "./UpdateItemQuantity";
+import UpdateItemQuantity from "./UpdateItemQuantity";
 import { useDispatch, useSelector } from "react-redux";
 
 function MenuItemList({ menuData }) {
@@ -18,13 +18,7 @@ function MenuItemList({ menuData }) {
         );
 
     return (
-        <section
-            className={
-                menuData.length > 3
-                    ? styles.menuItemList
-                    : styles.menuItemListFlex
-            }
-        >
+        <section className={styles.menuItemListFlex}>
             {menuData.map((item) => (
                 <MenuItem item={item} key={item.name} />
             ))}

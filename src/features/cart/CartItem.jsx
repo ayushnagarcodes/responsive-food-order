@@ -1,4 +1,5 @@
 import styles from "./CartItem.module.css";
+import UpdateItemQuantity from "../menu/UpdateItemQuantity";
 
 function CartItem({ item }) {
     return (
@@ -8,16 +9,21 @@ function CartItem({ item }) {
             </div>
 
             <div className={styles.itemInfo}>
-                <p>{item.itemName}</p>
-                <div>
-                    <span
-                        style={{ whiteSpace: "pre" }}
-                        className={styles.price}
-                    >
-                        ₹{String(item.unitPrice).padEnd(7)}
-                    </span>
+                <div className={styles.cartHeader}>
+                    <p>{item.itemName}</p>
+                    <UpdateItemQuantity
+                        itemName={item.itemName}
+                        itemQuantity={item.quantity}
+                        size="small"
+                    />
+                </div>
+
+                <div className={styles.cartFooter}>
+                    <span className={styles.price}>₹{item.unitPrice}</span>
                     <span className={styles.quantity}>{item.quantity}X</span>
-                    <span className={styles.price}>₹{item.totalPrice}</span>
+                    <span className={styles.totalPrice}>
+                        ₹{item.totalPrice}
+                    </span>
                 </div>
             </div>
         </article>

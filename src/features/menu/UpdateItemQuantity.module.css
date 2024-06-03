@@ -22,3 +22,15 @@
 .updateQuantity span {
     font-weight: 600;
 }
+
+/* For size: small */
+.updateQuantity.small {
+    gap: 0.5rem;
+    padding: 0.375rem 0.5rem;
+    border-radius: var(--br-xs);
+}
+
+.updateQuantity.small button {
+    height: 1.25rem;
+    width: 1.25rem;
+}
