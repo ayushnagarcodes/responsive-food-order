@@ -71,6 +71,7 @@ const categoryData = [
     { name: "Burgers", total: 1, img: "assets/icons/burger.png" },
     { name: "Soups", total: 0, img: "assets/icons/soup.png" },
     { name: "Noodles", total: 0, img: "assets/icons/noodles.png" },
+    { name: "Jain", total: 2, img: "assets/icons/noodles.png" },
 ];
 
 const menuData = [
