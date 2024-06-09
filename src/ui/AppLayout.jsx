@@ -10,6 +10,7 @@ import SideNav from "../ui/SideNav";
 import Menu from "../features/menu/Menu";
 import Cart from "../features/cart/Cart";
 import CartOverview from "../features/cart/CartOverview";
+import PaymentSuccess from "./PaymentSuccess";
 
 function subscribe(callback) {
     window.addEventListener("resize", callback);
@@ -35,6 +36,7 @@ function AppLargeScreen({ className }) {
             <SideNav />
             <Menu />
             {isCartOpen && <Cart />}
+            <PaymentSuccess />
         </div>
     );
 }
@@ -62,10 +64,9 @@ function AppSmallScreen({ className }) {
     return (
         <div className={className}>
             <SideNav />
-
             {!isCartOpen ? <Menu /> : <Cart isSmallScreen={true} />}
-
             {cartQuantity !== 0 && <CartOverview />}
+            <PaymentSuccess />
         </div>
     );
 }

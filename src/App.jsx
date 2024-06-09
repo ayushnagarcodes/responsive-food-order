@@ -1,10 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import AppLayout from "./ui/AppLayout";
 import PwaInstallPrompt from "./ui/PwaInstallPrompt";
+import { useDispatch, useSelector } from "react-redux";
+import { getShowPwaPrompt, openPwaPrompt } from "./appSlice";
 
 function App() {
-    const [showPwaPrompt, setShowPwaPrompt] = useState(false);
     const deferredPrompt = useRef(null);
+    const showPwaPrompt = useSelector(getShowPwaPrompt);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const handleShowPrompt = async (e) => {
@@ -17,7 +20,7 @@ function App() {
 
             // Saving event for later use
             deferredPrompt.current = e;
-            setShowPwaPrompt(true);
+            dispatch(openPwaPrompt());
         };
         window.addEventListener("beforeinstallprompt", handleShowPrompt);
 
@@ -30,10 +33,7 @@ function App() {
         <>
             <AppLayout />
             {showPwaPrompt && (
-                <PwaInstallPrompt
-                    setShowPwaPrompt={setShowPwaPrompt}
-                    deferredPrompt={deferredPrompt}
-                />
+                <PwaInstallPrompt deferredPrompt={deferredPrompt} />
             )}
         </>
     );

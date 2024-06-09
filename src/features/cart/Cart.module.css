@@ -114,20 +114,6 @@
     width: 1.75rem;
 }
 
-.btnPlaceOrder {
-    padding: 0.875rem 1rem;
-    background-color: var(--clr-primary-300);
-    border-radius: var(--br-small);
-
-    font-weight: 600;
-    color: var(--clr-neutral-50);
-    transition: 0.2s var(--timing-function);
-}
-
-.btnPlaceOrder:hover {
-    background-color: var(--clr-primary-400);
-}
-
 .selected {
     background-color: var(--clr-primary-200);
 }

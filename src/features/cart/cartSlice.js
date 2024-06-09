@@ -9,8 +9,7 @@ import { createSlice } from "@reduxjs/toolkit";
         quantity: 2,
         totalPrice: 200
     }
-*/
-const initialState = {
+*/ export const initialState = {
     cart: [],
     isCartOpen: false,
 };
@@ -51,6 +50,9 @@ const cartSlice = createSlice({
                 cartSlice.caseReducers.deleteItem(state, action);
             }
         },
+        clearCart(state) {
+            state.cart = [];
+        },
         openCart(state) {
             // payload = boolean
             state.isCartOpen = true;
@@ -67,6 +69,7 @@ export const {
     deleteItem,
     increaseItemQuantity,
     decreaseItemQuantity,
+    clearCart,
     openCart,
     closeCart,
 } = cartSlice.actions;
@@ -75,26 +78,18 @@ export default cartSlice.reducer;
 
 // Selector functions
 
-const getCart = (state) => state.cart.cart;
+export const getCart = (state) => state.cart.cart;
 
-const getTotalCartQuantity = (state) =>
+export const getTotalCartQuantity = (state) =>
     state.cart.cart.reduce((acc, item) => acc + item.quantity, 0);
 
-const getTotalCartPrice = (state) =>
+export const getTotalCartPrice = (state) =>
     state.cart.cart.reduce((acc, item) => acc + item.totalPrice, 0);
 
-const getItemQuantity = (name) => (state) => {
+export const getItemQuantity = (name) => (state) => {
     return (
         state.cart.cart.find((item) => item.itemName === name)?.quantity ?? 0
     );
 };
 
-const getIsCartOpen = (state) => state.cart.isCartOpen;
-
-export {
-    getCart,
-    getTotalCartQuantity,
-    getTotalCartPrice,
-    getItemQuantity,
-    getIsCartOpen,
-};
+export const getIsCartOpen = (state) => state.cart.isCartOpen;

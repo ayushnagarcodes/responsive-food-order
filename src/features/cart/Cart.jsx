@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeCart, getCart, getTotalCartPrice } from "./cartSlice";
 import CartItem from "./CartItem";
+import PlaceOrder from "./PlaceOrder";
 
 const orderTypeData = ["Dine In", "Take Away", "Delivery"];
 
@@ -21,6 +22,15 @@ function Cart({ isSmallScreen = false }) {
     const subTotal = useSelector(getTotalCartPrice);
     const tax = (5 / 100) * subTotal;
     const total = subTotal + tax;
+
+    const newOrderData = {
+        orderType,
+        cart,
+        subTotal,
+        tax,
+        total,
+        paymentType,
+    };
 
     return (
         <div className={styles.cartContainer}>
@@ -65,7 +75,7 @@ function Cart({ isSmallScreen = false }) {
                     setPaymentType={setPaymentType}
                 />
 
-                <button className={styles.btnPlaceOrder}>Place Order</button>
+                <PlaceOrder newOrderData={newOrderData} />
             </section>
         </div>
     );

@@ -1,14 +1,18 @@
 import styles from "./PwaInstallPrompt.module.css";
+import { useDispatch } from "react-redux";
+import { closePwaPrompt } from "./../appSlice.js";
 
-function PwaInstallPrompt({ setShowPwaPrompt, deferredPrompt }) {
+function PwaInstallPrompt({ deferredPrompt }) {
+    const dispatch = useDispatch();
+
     function handleAccept() {
         deferredPrompt.current?.prompt();
         deferredPrompt.current = null;
-        setShowPwaPrompt(false);
+        dispatch(closePwaPrompt());
     }
 
     function handleDeny() {
-        setShowPwaPrompt(false);
+        dispatch(closePwaPrompt());
     }
 
     return (
