@@ -1,12 +1,11 @@
+import { app, cartMobile, cartMobileActive } from "./AppLayout.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import {
-    app,
-    cartActive,
-    cartMobile,
-    cartMobileActive,
-} from "./AppLayout.module.css";
-import { useSelector } from "react-redux";
-import { getTotalCartQuantity } from "../features/cart/cartSlice";
-import { useEffect, useState, useSyncExternalStore } from "react";
+    closeCart,
+    getIsCartOpen,
+    getTotalCartQuantity,
+} from "../features/cart/cartSlice";
+import { useEffect, useSyncExternalStore } from "react";
 import SideNav from "../ui/SideNav";
 import Menu from "../features/menu/Menu";
 import Cart from "../features/cart/Cart";
@@ -18,39 +17,37 @@ function subscribe(callback) {
 }
 
 function AppLayout() {
-    const cartQuantity = useSelector(getTotalCartQuantity);
     const browserWidth = useSyncExternalStore(subscribe, () => screen.width);
 
     let className = app;
 
     if (browserWidth > 840) {
-        return (
-            <AppLargeScreen cartQuantity={cartQuantity} className={className} />
-        );
+        return <AppLargeScreen className={className} />;
     }
-    return <AppSmallScreen cartQuantity={cartQuantity} className={className} />;
+    return <AppSmallScreen className={className} />;
 }
 
-function AppLargeScreen({ cartQuantity, className }) {
-    // Setting CSS Class
-    if (cartQuantity) className += ` ${cartActive}`;
+function AppLargeScreen({ className }) {
+    const isCartOpen = useSelector(getIsCartOpen);
 
     return (
         <div className={className}>
             <SideNav />
             <Menu />
-            {cartQuantity !== 0 && <Cart />}
+            {isCartOpen && <Cart />}
         </div>
     );
 }
 
-function AppSmallScreen({ cartQuantity, className }) {
-    const [isCartOpen, setIsCartOpen] = useState(false);
+function AppSmallScreen({ className }) {
+    const cartQuantity = useSelector(getTotalCartQuantity);
+    const isCartOpen = useSelector(getIsCartOpen);
+    const dispatch = useDispatch();
 
     // Setting "isCartOpen" to false if "cartQuantity" becomes 0
     useEffect(
         function () {
-            if (cartQuantity === 0) setIsCartOpen(false);
+            if (cartQuantity === 0) dispatch(closeCart());
         },
         [cartQuantity]
     );
@@ -66,14 +63,9 @@ function AppSmallScreen({ cartQuantity, className }) {
         <div className={className}>
             <SideNav />
 
-            {!isCartOpen ? <Menu /> : <Cart />}
+            {!isCartOpen ? <Menu /> : <Cart isSmallScreen={true} />}
 
-            {cartQuantity !== 0 && (
-                <CartOverview
-                    isCartOpen={isCartOpen}
-                    setIsCartOpen={setIsCartOpen}
-                />
-            )}
+            {cartQuantity !== 0 && <CartOverview />}
         </div>
     );
 }

@@ -1,11 +1,11 @@
 .categoryList {
     margin-bottom: var(--spacing);
-    overflow: hidden;
+    overflow: hidden visible;
 }
 
 .categoryOverflow {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--spacing);
     overflow: auto hidden;
     padding-bottom: 0.75rem;
 }
@@ -15,9 +15,10 @@
 }
 
 .categoryContainer {
-    min-width: 8.75rem;
+    flex-shrink: 0;
+    min-width: 8rem;
     background-color: var(--clr-neutral-50);
-    padding: 1.25rem;
+    padding: 1rem 1rem 1rem 1.25rem;
     border-radius: var(--br-medium);
     box-shadow: var(--box-shadow);
     cursor: pointer;
@@ -30,7 +31,7 @@
 }
 
 .categoryContainer img {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     width: 2.5rem;
     height: 2.5rem;
 }

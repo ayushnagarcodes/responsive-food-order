@@ -3,11 +3,14 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import CategoryList from "./CategoryList";
 import MenuItemList from "./MenuItemList";
+import { useDispatch } from "react-redux";
+import { openCart } from "../cart/cartSlice";
 
 function Menu() {
     const [category, setCategory] = useState("All");
     const [foodType, setFoodType] = useState("All");
     const [query, setQuery] = useState("");
+    const dispatch = useDispatch();
 
     // Filtering data based on "category"
     let filteredMenuData =
@@ -36,16 +39,43 @@ function Menu() {
                 <SearchBar query={query} setQuery={setQuery} />
 
                 <div className={styles.foodType}>
-                    {foodTypeData.map((data) => (
-                        <button
-                            onClick={() => setFoodType(data)}
-                            className={data === foodType ? styles.selected : ""}
-                            key={data}
-                        >
-                            {data}
-                        </button>
-                    ))}
+                    <button
+                        onClick={() => setFoodType("All")}
+                        className={foodType === "All" ? styles.selected : ""}
+                    >
+                        All
+                    </button>
+
+                    <button
+                        onClick={() => setFoodType("Veg")}
+                        className={foodType === "Veg" ? styles.selected : ""}
+                    >
+                        <img src="/assets/icons/veg.png" alt="" />
+                    </button>
+
+                    <button
+                        onClick={() => setFoodType("Non Veg")}
+                        className={
+                            foodType === "Non Veg" ? styles.selected : ""
+                        }
+                    >
+                        <img
+                            src="/assets/icons/non-veg.png"
+                            alt=""
+                            style={{ filter: "hue-rotate(245deg)" }}
+                        />
+                    </button>
                 </div>
+
+                <button
+                    className={styles.btnOpenCart}
+                    onClick={() => dispatch(openCart())}
+                >
+                    <img
+                        src="/assets/icons/bag-handle-outline-dark.svg"
+                        alt="cart button"
+                    />
+                </button>
             </div>
 
             <CategoryList
@@ -57,8 +87,6 @@ function Menu() {
         </main>
     );
 }
-
-const foodTypeData = ["All", "Veg", "Non Veg"];
 
 const categoryData = [
     { name: "All", total: 7, img: "assets/icons/menu.png" },

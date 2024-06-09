@@ -5,11 +5,6 @@
     grid-template-areas: "sideNav menu";
 }
 
-.app.cartActive {
-    grid-template-columns: 15.5rem 1fr 25rem;
-    grid-template-areas: "sideNav menu cart";
-}
-
 @media only screen and (max-width: 950px) {
     .app {
         grid-template-columns: 1fr;
@@ -17,30 +12,6 @@
         grid-template-areas:
             "sideNav sideNav"
             "menu menu";
-    }
-
-    .app.cartActive {
-        grid-template-columns: 1fr 25rem;
-        grid-template-areas:
-            "sideNav sideNav"
-            "menu cart";
-    }
-}
-
-@media only screen and (max-width: 950px) {
-    .app {
-        grid-template-columns: 1fr;
-        grid-template-rows: 4rem 1fr;
-        grid-template-areas:
-            "sideNav sideNav"
-            "menu menu";
-    }
-
-    .app.cartActive {
-        grid-template-columns: 1fr 25rem;
-        grid-template-areas:
-            "sideNav sideNav"
-            "menu cart";
     }
 }
 

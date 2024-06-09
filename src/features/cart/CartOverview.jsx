@@ -1,10 +1,18 @@
 import { cartOverview } from "./CartOverview.module.css";
-import { useSelector } from "react-redux";
-import { getTotalCartPrice, getTotalCartQuantity } from "./cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    closeCart,
+    getIsCartOpen,
+    getTotalCartPrice,
+    getTotalCartQuantity,
+    openCart,
+} from "./cartSlice";
 
-function CartOverview({ isCartOpen, setIsCartOpen }) {
+function CartOverview() {
     const totalCartQuantity = useSelector(getTotalCartQuantity);
     const totalCartPrice = useSelector(getTotalCartPrice);
+    const isCartOpen = useSelector(getIsCartOpen);
+    const dispatch = useDispatch();
 
     return (
         <div className={cartOverview}>
@@ -13,12 +21,12 @@ function CartOverview({ isCartOpen, setIsCartOpen }) {
             <span>₹{totalCartPrice}</span>
 
             {!isCartOpen ? (
-                <button onClick={() => setIsCartOpen(true)}>
+                <button onClick={() => dispatch(openCart())}>
                     <span>View Cart</span>
                     <img src="assets/icons/bag-handle-outline.svg" alt="" />
                 </button>
             ) : (
-                <button onClick={() => setIsCartOpen(false)}>
+                <button onClick={() => dispatch(closeCart())}>
                     ← Back to Menu
                 </button>
             )}

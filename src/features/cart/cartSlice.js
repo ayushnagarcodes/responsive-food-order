@@ -12,6 +12,7 @@ import { createSlice } from "@reduxjs/toolkit";
 */
 const initialState = {
     cart: [],
+    isCartOpen: false,
 };
 
 const cartSlice = createSlice({
@@ -50,6 +51,14 @@ const cartSlice = createSlice({
                 cartSlice.caseReducers.deleteItem(state, action);
             }
         },
+        openCart(state) {
+            // payload = boolean
+            state.isCartOpen = true;
+        },
+        closeCart(state) {
+            // payload = boolean
+            state.isCartOpen = false;
+        },
     },
 });
 
@@ -58,6 +67,8 @@ export const {
     deleteItem,
     increaseItemQuantity,
     decreaseItemQuantity,
+    openCart,
+    closeCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
@@ -78,4 +89,12 @@ const getItemQuantity = (name) => (state) => {
     );
 };
 
-export { getCart, getTotalCartQuantity, getTotalCartPrice, getItemQuantity };
+const getIsCartOpen = (state) => state.cart.isCartOpen;
+
+export {
+    getCart,
+    getTotalCartQuantity,
+    getTotalCartPrice,
+    getItemQuantity,
+    getIsCartOpen,
+};

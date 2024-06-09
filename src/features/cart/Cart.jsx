@@ -1,7 +1,7 @@
 import styles from "./Cart.module.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { getCart, getTotalCartPrice } from "./cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { closeCart, getCart, getTotalCartPrice } from "./cartSlice";
 import CartItem from "./CartItem";
 
 const orderTypeData = ["Dine In", "Take Away", "Delivery"];
@@ -12,9 +12,10 @@ const paymentOptionsData = [
     { type: "QR Code", img: "assets/icons/qr-code-outline.svg" },
 ];
 
-function Cart() {
+function Cart({ isSmallScreen = false }) {
     const [orderType, setOrderType] = useState("Dine In");
     const [paymentType, setPaymentType] = useState("Cash");
+    const dispatch = useDispatch();
 
     const cart = useSelector(getCart);
     const subTotal = useSelector(getTotalCartPrice);
@@ -22,29 +23,51 @@ function Cart() {
     const total = subTotal + tax;
 
     return (
-        <section className={styles.cart}>
-            <div className={styles.cartInfo}>
-                <h2>Table No.</h2>
-                <span>Customer Name</span>
-            </div>
+        <div className={styles.cartContainer}>
+            <section
+                className={`${styles.cart} ${
+                    !isSmallScreen ? styles.largeScreen : ""
+                }`}
+            >
+                <button
+                    className={styles.btnCloseCart}
+                    onClick={() => dispatch(closeCart())}
+                >
+                    <img
+                        src="assets/icons/close-outline.svg"
+                        alt="close cart button"
+                    />
+                </button>
 
-            <OrderType orderType={orderType} setOrderType={setOrderType} />
+                <div className={styles.cartInfo}>
+                    <h2>Table No.</h2>
+                    <span>Customer Name</span>
+                </div>
 
-            <div className={styles.cartItems}>
-                {cart.map((item) => (
-                    <CartItem item={item} key={item.itemName} />
-                ))}
-            </div>
+                <OrderType orderType={orderType} setOrderType={setOrderType} />
 
-            <TotalBill subTotal={subTotal} tax={tax} total={total} />
+                {orderType === "Delivery" ? (
+                    <p style={{ textAlign: "center", marginTop: "2.5rem" }}>
+                        Coming Soon!
+                    </p>
+                ) : (
+                    <div className={styles.cartItems}>
+                        {cart.map((item) => (
+                            <CartItem item={item} key={item.itemName} />
+                        ))}
+                    </div>
+                )}
 
-            <PaymentOptions
-                paymentType={paymentType}
-                setPaymentType={setPaymentType}
-            />
+                <TotalBill subTotal={subTotal} tax={tax} total={total} />
 
-            <button className={styles.btnPlaceOrder}>Place Order</button>
-        </section>
+                <PaymentOptions
+                    paymentType={paymentType}
+                    setPaymentType={setPaymentType}
+                />
+
+                <button className={styles.btnPlaceOrder}>Place Order</button>
+            </section>
+        </div>
     );
 }
 
