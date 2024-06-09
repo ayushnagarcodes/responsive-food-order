@@ -1,0 +1,35 @@
+.pwaInstallPrompt {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--clr-primary-300);
+    border-radius: var(--br-small);
+    font-weight: bold;
+    color: var(--clr-neutral-50);
+    box-shadow: var(--box-shadow);
+}
+
+.pwaInstallPrompt p {
+    text-wrap: nowrap;
+}
+
+.pwaInstallPrompt button {
+    padding: 0.5rem 1rem;
+    border-radius: var(--br-xs);
+    font: inherit;
+    border: 1px solid #fff;
+}
+
+@media only screen and (max-width: 600px) {
+    .pwaInstallPrompt {
+        top: auto;
+        bottom: 1.5rem;
+    }
+}

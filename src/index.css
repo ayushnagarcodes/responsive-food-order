@@ -36,9 +36,10 @@
     --br-small: 0.875rem;
     --br-medium: 1.25rem;
 
+    --border: 2px solid var(--clr-primary-300);
+
     --spacing: 1.5rem;
     --box-shadow: 5px 6px 11px rgba(0, 0, 0, 0.1);
-    --border: 2px solid var(--clr-primary-300);
     --timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96);
 }
 

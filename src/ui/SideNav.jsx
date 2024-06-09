@@ -13,7 +13,7 @@ function SideNav() {
         <nav
             className={`${sideNav} ${isHamburgerActive ? hamburgerActive : ""}`}
         >
-            <h1>Food Time</h1>
+            <h1>Orderpulse</h1>
 
             <div>
                 <div className={menuItems}>
