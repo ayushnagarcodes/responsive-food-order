@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeCart, getCart, getTotalCartPrice } from "./cartSlice";
 import CartItem from "./CartItem";
 import PlaceOrder from "./PlaceOrder";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 const orderTypeData = ["Dine In", "Take Away", "Delivery"];
 
@@ -17,6 +18,7 @@ function Cart({ isSmallScreen = false }) {
     const [orderType, setOrderType] = useState("Dine In");
     const [paymentType, setPaymentType] = useState("Cash");
     const dispatch = useDispatch();
+    const ref = useOutsideClick(handleClose, true, isSmallScreen);
 
     const cart = useSelector(getCart);
     const subTotal = useSelector(getTotalCartPrice);
@@ -32,17 +34,19 @@ function Cart({ isSmallScreen = false }) {
         paymentType,
     };
 
+    function handleClose() {
+        dispatch(closeCart());
+    }
+
     return (
         <div className={styles.cartContainer}>
             <section
+                ref={ref}
                 className={`${styles.cart} ${
                     !isSmallScreen ? styles.largeScreen : ""
                 }`}
             >
-                <button
-                    className={styles.btnCloseCart}
-                    onClick={() => dispatch(closeCart())}
-                >
+                <button className={styles.btnCloseCart} onClick={handleClose}>
                     <img
                         src="assets/icons/close-outline.svg"
                         alt="close cart button"

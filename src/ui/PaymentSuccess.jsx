@@ -1,12 +1,14 @@
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./PaymentSuccess.module.css";
+import { useDispatch, useSelector } from "react-redux";
 import { closePaymentSuccess, getShowPaymentSuccess } from "../appSlice";
 import { createPortal } from "react-dom";
 import { Player } from "@lottiefiles/react-lottie-player";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
 function PaymentSuccess() {
     const dispatch = useDispatch();
     const showPaymentSuccess = useSelector(getShowPaymentSuccess);
+    const ref = useOutsideClick(handleClose, true);
 
     function handleClose() {
         dispatch(closePaymentSuccess());
@@ -16,7 +18,7 @@ function PaymentSuccess() {
 
     return createPortal(
         <div className={styles.paymentSuccessContainer}>
-            <div className={styles.paymentSuccess}>
+            <div ref={ref} className={styles.paymentSuccess}>
                 <button className={styles.btnCloseCart} onClick={handleClose}>
                     <img
                         src="assets/icons/close-outline.svg"

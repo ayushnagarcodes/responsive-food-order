@@ -27,7 +27,7 @@ function App() {
         return () => {
             window.removeEventListener("beforeinstallprompt", handleShowPrompt);
         };
-    }, []);
+    }, [dispatch]);
 
     return (
         <>

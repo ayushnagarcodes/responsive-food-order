@@ -18,7 +18,10 @@ function subscribe(callback) {
 }
 
 function AppLayout() {
-    const browserWidth = useSyncExternalStore(subscribe, () => screen.width);
+    const browserWidth = useSyncExternalStore(
+        subscribe,
+        () => window.innerWidth
+    );
 
     let className = app;
 
