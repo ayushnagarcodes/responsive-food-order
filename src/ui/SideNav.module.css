@@ -1,5 +1,4 @@
 .sideNav {
-    grid-area: sideNav;
     padding: 2rem;
     background-color: var(--clr-neutral-50);
 }
@@ -27,13 +26,15 @@
     border-radius: 50px;
 }
 
-.menuItems li a:hover {
+.menuItems li a:hover,
+.menuItems :global(.active) {
     background-color: var(--clr-primary-300);
     color: white;
     transition: 0.2s var(--timing-function);
 }
 
-.menuItems li a:hover img {
+.menuItems li a:hover img,
+.menuItems :global(.active) img {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg)
         grayscale(100%);
 }
@@ -57,7 +58,7 @@
     width: 40px;
     place-items: center;
     cursor: pointer;
-    z-index: 110;
+    z-index: 90;
 }
 
 .sideNav .menuHamburger span {
@@ -114,7 +115,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        z-index: 100;
+        z-index: 80;
 
         display: none;
         align-items: center;

@@ -3,6 +3,8 @@ import AppLayout from "./ui/AppLayout";
 import PwaInstallPrompt from "./ui/PwaInstallPrompt";
 import { useDispatch, useSelector } from "react-redux";
 import { getShowPwaPrompt, openPwaPrompt } from "./appSlice";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import NewOrder from "./pages/NewOrder";
 
 function App() {
     const deferredPrompt = useRef(null);
@@ -31,7 +33,18 @@ function App() {
 
     return (
         <>
-            <AppLayout />
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<AppLayout />}>
+                        <Route index element={<Navigate replace to="menu" />} />
+                        <Route path="dashboard" element={<h1>Dashboard</h1>} />
+                        <Route path="menu" element={<NewOrder />} />
+                        <Route path="orders" element={<h1>Orders</h1>} />
+                    </Route>
+                    <Route path="login" element={<h1>Login</h1>} />
+                    <Route path="*" element={<h1>404: Page Not Found</h1>} />
+                </Routes>
+            </BrowserRouter>
             {showPwaPrompt && (
                 <PwaInstallPrompt deferredPrompt={deferredPrompt} />
             )}

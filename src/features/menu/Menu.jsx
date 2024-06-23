@@ -34,7 +34,7 @@ function Menu() {
               );
 
     return (
-        <main className={styles.menu}>
+        <article className={styles.menu}>
             <div className={styles.menuTop}>
                 <SearchBar query={query} setQuery={setQuery} />
 
@@ -83,8 +83,9 @@ function Menu() {
                 category={category}
                 setCategory={setCategory}
             />
+
             <MenuItemList menuData={filteredMenuData} />
-        </main>
+        </article>
     );
 }
 

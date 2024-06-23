@@ -5,36 +5,37 @@ import {
     menuHamburger,
     hamburgerActive,
 } from "./SideNav.module.css";
+import { NavLink } from "react-router-dom";
 
 function SideNav() {
     const [isHamburgerActive, setIsHamburgerActive] = useState(false);
 
     return (
-        <nav
+        <aside
             className={`${sideNav} ${isHamburgerActive ? hamburgerActive : ""}`}
         >
             <h1>Orderpulse</h1>
 
-            <div>
+            <nav>
                 <div className={menuItems}>
                     <ul>
                         <li>
-                            <a href="#">
+                            <NavLink to="/dashboard">
                                 <img src="assets/icons/storefront-outline.svg" />
-                                <span>Home</span>
-                            </a>
+                                <span>Dashboard</span>
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="#">
+                            <NavLink to="/menu">
                                 <img src="assets/icons/receipt-outline.svg" />
-                                <span>Bills</span>
-                            </a>
+                                <span>Menu</span>
+                            </NavLink>
                         </li>
                         <li>
-                            <a href="#">
+                            <NavLink to="/orders">
                                 <img src="assets/icons/wallet-outline.svg" />
-                                <span>Wallet</span>
-                            </a>
+                                <span>Orders</span>
+                            </NavLink>
                         </li>
                         <li>
                             <a href="#">
@@ -69,8 +70,8 @@ function SideNav() {
                 >
                     <span></span>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </aside>
     );
 }
 

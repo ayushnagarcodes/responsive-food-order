@@ -122,13 +122,6 @@
 /* Media Queries */
 /*****************/
 
-@media only screen and (max-width: 950px) {
-    .cart {
-        /* Browser height - Nav height */
-        height: calc(100svh - 4rem);
-    }
-}
-
 @media only screen and (max-width: 840px) {
     .cart {
         /* Browser height - Nav height - CartOverview height */

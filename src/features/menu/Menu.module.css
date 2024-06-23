@@ -1,8 +1,9 @@
 .menu {
+    height: 100%;
     grid-area: menu;
     background-color: var(--clr-neutral-100);
     padding: 2rem 2rem 3rem;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .menuTop {
