@@ -12,6 +12,7 @@
 }
 
 .paymentSuccess {
+    position: relative;
     padding: 1.5rem 2rem 1.75rem;
     background-color: var(--clr-neutral-50);
     border-radius: var(--br-medium);

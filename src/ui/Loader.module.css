@@ -1,0 +1,31 @@
+.loaderContainer {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+@keyframes rotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: conic-gradient(transparent, var(--clr-primary-300));
+    animation: rotate 1.5s linear infinite;
+
+    display: grid;
+    place-items: center;
+}
+
+.loader::after {
+    z-index: 100;
+    content: "";
+    height: 90px;
+    width: 90px;
+    border-radius: 50%;
+    background: var(--clr-neutral-100);
+}

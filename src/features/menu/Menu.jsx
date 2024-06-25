@@ -1,10 +1,10 @@
 import styles from "./Menu.module.css";
 import { useState } from "react";
-import SearchBar from "./SearchBar";
-import CategoryList from "./CategoryList";
-import MenuItemList from "./MenuItemList";
 import { useDispatch } from "react-redux";
 import { openCart } from "../cart/cartSlice";
+import SearchBar from "../../ui/SearchBar";
+import CategoryList from "./CategoryList";
+import MenuItemList from "./MenuItemList";
 
 function Menu() {
     const [category, setCategory] = useState("All");
@@ -36,7 +36,11 @@ function Menu() {
     return (
         <article className={styles.menu}>
             <div className={styles.menuTop}>
-                <SearchBar query={query} setQuery={setQuery} />
+                <SearchBar
+                    query={query}
+                    setQuery={setQuery}
+                    placeholder="Search dish here..."
+                />
 
                 <div className={styles.foodType}>
                     <button

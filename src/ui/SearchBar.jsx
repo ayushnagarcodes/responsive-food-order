@@ -1,6 +1,6 @@
 import { searchBar } from "./SearchBar.module.css";
 
-function SearchBar({ query, setQuery }) {
+function SearchBar({ query, setQuery, placeholder = "" }) {
     function handleInput(e) {
         setQuery(e.target.value);
     }
@@ -11,7 +11,7 @@ function SearchBar({ query, setQuery }) {
             <input
                 value={query}
                 onChange={handleInput}
-                placeholder="Search dish here..."
+                placeholder={placeholder}
             ></input>
         </div>
     );

@@ -50,10 +50,10 @@ function SideNav() {
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <NavLink to="/settings">
                                 <img src="assets/icons/settings-outline.svg" />
                                 <span>Settings</span>
-                            </a>
+                            </NavLink>
                         </li>
                         <li>
                             <a href="#">
