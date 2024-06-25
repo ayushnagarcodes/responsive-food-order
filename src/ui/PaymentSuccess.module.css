@@ -6,15 +6,12 @@
     height: 100svh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.1);
+
+    display: grid;
+    place-items: center;
 }
 
 .paymentSuccess {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-
     padding: 1.5rem 2rem 1.75rem;
     background-color: var(--clr-neutral-50);
     border-radius: var(--br-medium);
