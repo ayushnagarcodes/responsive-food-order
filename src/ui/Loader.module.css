@@ -11,8 +11,7 @@
 }
 
 .loader {
-    height: 100px;
-    width: 100px;
+    aspect-ratio: 1;
     border-radius: 50%;
     background: conic-gradient(transparent, var(--clr-primary-300));
     animation: rotate 1.5s linear infinite;
@@ -24,8 +23,8 @@
 .loader::after {
     z-index: 100;
     content: "";
-    height: 90px;
-    width: 90px;
+    height: 90%;
+    aspect-ratio: 1;
     border-radius: 50%;
     background: var(--clr-neutral-100);
 }

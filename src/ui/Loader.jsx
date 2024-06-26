@@ -6,7 +6,10 @@ function Loader({ type }) {
             className={styles.loaderContainer}
             style={{ height: type === "fullPage" ? "100svh" : "auto" }}
         >
-            <div className={styles.loader}></div>
+            <div
+                className={styles.loader}
+                style={{ height: type === "fullPage" ? "80px" : "40px" }}
+            ></div>
         </div>
     );
 }

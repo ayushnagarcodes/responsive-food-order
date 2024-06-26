@@ -5,16 +5,27 @@ import {
     categoryOverflow,
 } from "./CategoryList.module.css";
 
-function CategoryList({ categoryData, category, setCategory }) {
+function CategoryList({ categories, activeCategory, setActiveCategory }) {
     return (
         <section className={categoryList}>
             <div className={categoryOverflow}>
-                {categoryData.map((obj, i) => (
+                <button
+                    className={`${categoryContainer} ${
+                        activeCategory === "All" ? selected : ""
+                    }`}
+                    onClick={() => setActiveCategory("All")}
+                >
+                    <img src="assets/icons/menu.png" alt={"All"} />
+                    <p>{"All"}</p>
+                    <span>{categories?.length} Items</span>
+                </button>
+
+                {categories?.map((obj, i) => (
                     <button
                         className={`${categoryContainer} ${
-                            category === obj.name ? selected : ""
+                            activeCategory === obj.name ? selected : ""
                         }`}
-                        onClick={() => setCategory(obj.name)}
+                        onClick={() => setActiveCategory(obj.name)}
                         key={i}
                     >
                         <img src={obj.img} alt={obj.name} />
